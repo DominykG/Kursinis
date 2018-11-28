@@ -1,0 +1,37 @@
+/---------------------------------------
+damageMin
+damageMax
+name
+type
+rarity
+value
+
+0 1 STICK 0 0 1
+0 1 STONE 0 0 1
+0 2 WOODEN_HAMMER 0 0 12
+0 3 KNIFE 0 1 50
+1 2 WOODEN_AXE 0 1 90
+0 4 BOW 0 1 240
+2 4 STEEL_AXE 0 2 600
+3 6 STEEL_SWORD 0 2 1900
+5 8 ELVEN_BOW 0 3 5600
+7 11 EMERALD_SWORD 0 3 15000
+16 19 DRAGONBONE_SWORD 0 4 75000
+18 30 OBSIDIAN_SWORD 0 4 100000
+//---------------------------------------
+defenseMin
+defenseMax
+name
+type
+rarity
+value
+
+0 1 DIRTY_CLOTHES 1 0 1
+1 2 LEATHER_ARMOR 1 1 16
+2 4 CHAIN_ARMOR 1 1 150
+3 7 IRON_ARMOR 1 2 600
+5 9 STEEL_ARMOR 1 3 2200
+8 13 DRAGON_BONE_ARMOR 1 4 5200
+12 19 OBSIDIAN_ARMOR 1 4 15000
+//---------------------------------------
+
