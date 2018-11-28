@@ -8,3 +8,5 @@
 // GameState Save function
 // invenotry class sumazint
 // duoti po kovos drop'a
+
+//komentaras

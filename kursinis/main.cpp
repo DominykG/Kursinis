@@ -1,6 +1,6 @@
 ﻿#include"Game.h"
 
-
+//Github kommentaras
 
 int main()
 {
