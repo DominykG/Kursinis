@@ -18,6 +18,26 @@ void Character::updateStats()
 	this->magicFind = static_cast<float>(this->intelligence) / 70;
 }
 
+const std::string Character::Save_stats()
+{
+	std::stringstream ss;
+
+	ss << this->name
+		<< " " << this->level
+		<< " " << this->exp
+		<< " " << this->statpoints
+		<< std::endl//attributes
+		<< " " << this->strength
+		<< " " << this->vitality
+		<< " " << this->agility
+		<< " " << this->dexterity
+		<< " " << this->intelligence
+		<< std::endl//money
+		<< " " << this->gold;
+
+	return ss.str();
+}
+
 //Konstruktoriai ir dekonstruktoriai
 Character::Character(std::string name)
 {

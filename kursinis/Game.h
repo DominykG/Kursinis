@@ -1,4 +1,3 @@
-
 #pragma once
 #include "MenuStates.h"
 
@@ -22,4 +21,7 @@ public:
 
 	//Funkcijos
 	void update();
+
+	void Save_game();
+	void Load_game();
 };

@@ -5,7 +5,6 @@
 #include<vector>
 #include<sstream>
 #include<cmath>
-
 #include"Inventory.h"
 
 //(50/3) * (pow(x, 3) - 6*pow(x, 2) + (x * 17) - 12);
@@ -62,6 +61,9 @@ private:
 
 	//Private funkcija
 	void updateStats();
+
+	const std::string Save_stats();
+	void Load_stats();
 
 public:
 	Character(std::string name);
