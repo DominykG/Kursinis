@@ -62,9 +62,6 @@ private:
 	//Private funkcija
 	void updateStats();
 
-	const std::string Save_stats();
-	void Load_stats();
-
 public:
 	Character(std::string name);
 	virtual ~Character();
@@ -102,5 +99,8 @@ public:
 	const std::string toString();
 	const std::string toStringPosition();
 	const std::string toStringStats();
+
+	const std::string Save_stats();
+	//void Load_stats(std::ifstream& input);
 };
 

@@ -1,4 +1,5 @@
 #include "GameState.h"
+#include <string>
 
 GameState::GameState(
 	Character*& character,
@@ -55,6 +56,8 @@ void GameState::updateMenu()
 		system("cls");
 		this->character->reset();
 		// save me padaryk
+		this->saveCharacter();
+
 		std::cout << "You have rested..." << "\n";
 		system("pause");
 		break;
@@ -74,4 +77,31 @@ void GameState::update()
 
 	//Paimti pasirinkima gavus tinkama
 	this->updateMenu();
+}
+
+void GameState::saveCharacter()
+{
+	char answer;
+	std::cout << "Do you want to save the game?(y/n) ";
+	std::cin >> answer;
+
+	if (answer == 'y')
+	{
+		std::cout << "Input save file name: ";
+		std::string f_name1, f_name2;
+		std::cin >> f_name1 >> f_name2;
+		std::cout << f_name1 << f_name2;
+		system("pause");
+
+		std::ofstream fo;
+		fo.open(f_name1 + f_name2 + ".save", std::ios::app);
+		//saving character stats
+		fo << this->character->Save_stats();
+		//saving character inventory
+		//saves 2 integers item in inventory position
+		//and item index
+		fo << this->character->getInventory().saveInventory();
+		fo.close();
+	}
+
 }

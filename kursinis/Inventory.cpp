@@ -149,6 +149,16 @@ std::string Inventory::toString() const
 	return ss.str();
 }
 
+std::string Inventory::saveInventory() const
+{
+	std::stringstream ss;
+	for (size_t i = 0; i < this->nrOfItems; i++)
+	{
+		ss << i << " " << this->items[i]->saveItem() << "\n";
+	}
+	return ss.str();
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 Weapon::Weapon(

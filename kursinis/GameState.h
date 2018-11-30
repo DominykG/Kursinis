@@ -4,13 +4,11 @@
 #include<fstream>
 #include<iomanip>
 #include<stack>
+//#include<string>
 #include "State.h"
 #include "Character.h"
 #include "Enemy.h"
 #include "MenuStates.h"
-
-
-
 
 class GameState :
 	public State
@@ -27,5 +25,6 @@ public:
 	void printMenu();
 	void updateMenu();
 	void update();
+	void saveCharacter();
 };
 

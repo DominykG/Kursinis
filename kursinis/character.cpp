@@ -17,27 +17,6 @@ void Character::updateStats()
 	this->critChance = static_cast<float>(this->dexterity) / 60;
 	this->magicFind = static_cast<float>(this->intelligence) / 70;
 }
-
-const std::string Character::Save_stats()
-{
-	std::stringstream ss;
-
-	ss << this->name
-		<< " " << this->level
-		<< " " << this->exp
-		<< " " << this->statpoints
-		<< std::endl//attributes
-		<< " " << this->strength
-		<< " " << this->vitality
-		<< " " << this->agility
-		<< " " << this->dexterity
-		<< " " << this->intelligence
-		<< std::endl//money
-		<< " " << this->gold;
-
-	return ss.str();
-}
-
 //Konstruktoriai ir dekonstruktoriai
 Character::Character(std::string name)
 {
@@ -62,7 +41,6 @@ Character::Character(std::string name)
 	this->updateStats();
 
 	this->inventory.add(Item("test", 0, 1, 200)); // testinis daiktas inventoriuje
-
 }
 
 Character::~Character()
@@ -350,3 +328,33 @@ const std::string Character::toStringStats()
 
 	return ss.str();
 }
+
+const std::string Character::Save_stats()
+{
+	std::stringstream ss;
+
+	ss << this->x << " " << this->y
+		<< " " << this->name
+		<< " " << this->level
+		<< " " << this->exp
+		<< " " << this->statpoints
+		<< std::endl//attributes
+		<< " " << this->strength
+		<< " " << this->vitality
+		<< " " << this->agility
+		<< " " << this->dexterity
+		<< " " << this->intelligence
+		<< std::endl//money
+		<< " " << this->gold << std::endl;
+
+	return ss.str();
+}
+
+/*void Character::Load_stats(std::ifstream& fi)
+{
+	
+	unsigned x, unsigned y, std::string name,
+	int level, int exp, int statp,
+	int str, int vit, int ag, int dext, int intl, int g;
+
+}*/

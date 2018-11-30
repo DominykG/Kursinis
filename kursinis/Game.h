@@ -1,5 +1,6 @@
 #pragma once
 #include "MenuStates.h"
+#include <fstream>
 
 class Game
 {
@@ -10,6 +11,9 @@ private:
 	unsigned activeCharacter;
 	std::vector<Character*> characterList;
 	std::stack<State*> states;
+
+	//std::ifstream fi;
+	//std::ofstream fo;
 
 public:
 	//Konstruktoriai ir dekonstruktoriai

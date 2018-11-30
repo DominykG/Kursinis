@@ -1,1 +1,4 @@
-﻿  kursinis.vcxproj -> D:\_university\Kursinis\RPG_Kursinis\x64\Debug\kursinis.exe
+﻿  GameState.cpp
+d:\_university\kursinis\rpg_kursinis\kursinis\character.h(81): warning C4244: 'return': conversion from 'float' to 'const int', possible loss of data
+d:\_university\kursinis\rpg_kursinis\kursinis\enemy.h(30): warning C4244: 'return': conversion from 'const float' to 'const int', possible loss of data
+  kursinis.vcxproj -> D:\_university\Kursinis\RPG_Kursinis\x64\Debug\kursinis.exe
