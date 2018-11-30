@@ -4,7 +4,7 @@
 #include<fstream>
 #include<iomanip>
 #include<stack>
-//#include<string>
+#include<string>
 #include "State.h"
 #include "Character.h"
 #include "Enemy.h"

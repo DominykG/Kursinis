@@ -592,7 +592,6 @@ void ShopMenuState::updateMenu()
 		break;
 	case 1:
 		system("CLS");
-		
 
 		while (!Leave_Shop == true) {
 			std::cout << "You picked up a right place to buy new gear ! " << "\n";

@@ -12,9 +12,6 @@ private:
 	std::vector<Character*> characterList;
 	std::stack<State*> states;
 
-	//std::ifstream fi;
-	//std::ofstream fo;
-
 public:
 	//Konstruktoriai ir dekonstruktoriai
 	Game();
@@ -25,7 +22,4 @@ public:
 
 	//Funkcijos
 	void update();
-
-	void Save_game();
-	void Load_game();
 };

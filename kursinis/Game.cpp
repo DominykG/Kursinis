@@ -43,19 +43,3 @@ void Game::update()
 	if (this->states.empty())
 		this->quit = true;
 }
-
-void Game::Save_game()
-{
-	//save stats function
-
-	//save inventory function
-
-}
-
-void Game::Load_game()
-{
-	//load stats function
-
-	//load inventory function
-
-}
