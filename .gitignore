@@ -32,11 +32,5 @@
 *.app
 
 # version warnings
-.pdb
-.ilk
-.tlog
-.lastbuildstate
-.log
-.db
-.suo
 .ipch
+*.opendb
