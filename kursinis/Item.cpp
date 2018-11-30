@@ -61,8 +61,8 @@ const std::string Item::toString() const
 	std::stringstream ss;
 
 	ss << " Name: " << this->name
-		<< " | Type: " << this->type
-		<< " | Rarity: " << this->rarity
+		<< " | Type: " << this->item_types[this->type]
+		<< " | Rarity: " << this->item_rarities[this->rarity]
 		<< " | Value: " << this->value
 		<< "\n";
 

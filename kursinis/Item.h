@@ -6,7 +6,7 @@
 //currently using no dmg or defence items
 enum item_types { WEAPON = 0, ARMOR };
 enum item_rarities { COMMON = 0, UNCOMMON, RARE, EPIC, LEGENDARY };
-//looks like useless for now
+//use it to add new items (look MenuStates.cpp ShopMenuState constructor)
 enum items { STICK = 0, STONE, WOODEN_HAMMER, KNIFE,
 		WOODEN_AXE, BOW, STEEL_AXE, STEEL_SWORD, ELVEN_BOW,
 		EMERALD_SWORD, DRAGONBONE_SWORD, OBSIDIAN_SWORD, DIRTY_CLOTHES,
@@ -22,8 +22,8 @@ private:
 	unsigned value;
 	int item_nr;
 	void generate();
-	//USE items enumerator to find item stats and item names or mb not?
-	std::string item_names[19] = {"Stick", "Stone", "Wooden_Hammer", "Knife"
+	/////////////////////////////////////////////////////////////////////////////
+	std::string item_names[19] = {"Stick", "Stone", "Wooden_Hammer", "Knife",
 	"Wooden_Axe", "Bow", "Steel_Axe", "Steel_Sword", "Elven_Bow", 
 	"Emerald_Bow", "Dragonbone_Sword", "Obsidian_Sword", "Dirty_Clothes", 
 	"Leather_Armor", "Chain_Armor", "Iron_Armor", "Steel_Armor",
@@ -38,6 +38,10 @@ private:
 	{ARMOR, COMMON, 1}, {ARMOR, UNCOMMON, 16}, {ARMOR, UNCOMMON, 150},
 	{ARMOR, RARE, 600}, {ARMOR, EPIC, 2200}, {ARMOR, LEGENDARY, 5200},
 	{ARMOR, LEGENDARY, 15000} };
+	/////////////////////////////////////////////////////////////////////////////
+	std::string item_types[2] = {"Weapon", "Armor"};
+	/////////////////////////////////////////////////////////////////////////////
+	std::string item_rarities[5] = {"Common", "Uncommon", "Rare", "Epic", "Legendary"};
 
 public:
 	Item(std::string name,
