@@ -5,7 +5,6 @@
 #include<vector>
 #include<sstream>
 #include<cmath>
-
 #include"Inventory.h"
 
 //(50/3) * (pow(x, 3) - 6*pow(x, 2) + (x * 17) - 12);
@@ -100,5 +99,8 @@ public:
 	const std::string toString();
 	const std::string toStringPosition();
 	const std::string toStringStats();
+
+	const std::string Save_stats();
+	//void Load_stats(std::ifstream& input);
 };
 

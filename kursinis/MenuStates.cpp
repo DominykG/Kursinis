@@ -545,15 +545,15 @@ ShopMenuState::ShopMenuState(
 	: character(character), State()
 {
 	this->states = states;
-	this->Shop_items.add(Item("stick", 0, 1, 100));
-	this->Shop_items.add(Item("sword", 0, 2, 200));
-	this->Shop_items.add(Item("dagger", 0, 3, 300));
-	this->Shop_items.add(Item("bow", 0, 4, 400));
-	this->Shop_items.add(Item("pike", 0, 1, 500));
-	this->Shop_items.add(Item("crossbow", 0, 2, 600));
-	this->Shop_items.add(Item("Axe", 0, 3, 700));
-	this->Shop_items.add(Item("katana", 0, 4, 800));
-	this->Shop_items.add(Item("scythe", 0, 1, 900));
+	this->Shop_items.add(Item(STICK));
+	this->Shop_items.add(Item(STONE));
+	this->Shop_items.add(Item(WOODEN_HAMMER));
+	this->Shop_items.add(Item(KNIFE));
+	this->Shop_items.add(Item(WOODEN_HAMMER));
+	this->Shop_items.add(Item(BOW));
+	this->Shop_items.add(Item(EMERALD_SWORD));
+	this->Shop_items.add(Item(DRAGONBONE_SWORD));
+	this->Shop_items.add(Item(OBSIDIAN_SWORD));
 }
 
 ShopMenuState::~ShopMenuState()
@@ -592,10 +592,9 @@ void ShopMenuState::updateMenu()
 		break;
 	case 1:
 		system("CLS");
-		
 
 		while (!Leave_Shop == true) {
-			std::cout << "You picked up  a right place to buy new gear ! " << "\n";
+			std::cout << "You picked up a right place to buy new gear ! " << "\n";
 			std::cout
 				<< "\n"
 				<< std::string(4, ' ') << "Your amount of gold:" << this->character->getGold()

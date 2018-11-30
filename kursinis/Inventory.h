@@ -30,11 +30,11 @@ public:
 	const unsigned& capacity() const;
 	Item& at(const unsigned index);
 
-
 	//Funkcijos
 	void add(const Item& item);
 	void remove(const unsigned index);
 	std::string toString() const;
+	std::string saveInventory() const;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////

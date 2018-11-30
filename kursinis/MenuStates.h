@@ -1,11 +1,10 @@
 #pragma once
 #include"GameState.h"
 #include "CombatState.h"
-//Visi meniu statai :D
+
 enum encounters { EMPTY = 0, FARM, CITY, SHOP, CHEST };
 
-
-
+//Visi meniu state'ai :D
 class MainMenuState
 	: public State
 {
@@ -136,7 +135,6 @@ public:
 	void updateMenu();
 	void update();
 };
-
 
 class ShopMenuState
 	: public State

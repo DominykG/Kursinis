@@ -1,6 +1,6 @@
-
 #pragma once
 #include "MenuStates.h"
+#include <fstream>
 
 class Game
 {

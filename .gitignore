@@ -32,14 +32,8 @@
 *.app
 
 # version warnings
-.pdb
-.ilk
-.tlog
-.lastbuildstate
-.log
-.db
-.suo
 .ipch
 *.opendb
-*.db
-*
+*.vs/kursinis/v15/.suo
+
+*.vs/kursinis/v15/Browse.VC.db
