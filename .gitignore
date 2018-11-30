@@ -34,3 +34,6 @@
 # version warnings
 .ipch
 *.opendb
+.vs/kursinis/v15/.suo
+
+.vs/kursinis/v15/Browse.VC.db
