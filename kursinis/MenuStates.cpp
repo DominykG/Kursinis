@@ -35,6 +35,7 @@ void MainMenuState::printMenu()
 		<< gui::msg_menuitem(1, "Start game. ")
 		<< gui::msg_menuitem(2, "Create character. ")
 		<< gui::msg_menuitem(3, "Select character. ")
+		<< gui::msg_menuitem(4, "Load character. ")
 		<< gui::msg_menudivider(40, '-');
 }
 
@@ -61,6 +62,9 @@ void MainMenuState::updateMenu()
 	case 3:
 		this->states->push(new CharacterSelectorState(this->characterList, this->activeCharacter, this->states));
 		break;
+	case 4:
+		this->loadGame();
+		break;
 	default:
 		system("CLS");
 		std::cout << "  [[ (!) Not a valid option. ]]" << "\n";
@@ -74,6 +78,11 @@ void MainMenuState::update()
 {
 	this->printMenu();
 	this->updateMenu();
+}
+
+void MainMenuState::loadGame()
+{
+	this->characterList->push_back(new Character());
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -547,13 +556,15 @@ ShopMenuState::ShopMenuState(
 	this->states = states;
 	this->Shop_items.add(Item(STICK));
 	this->Shop_items.add(Item(STONE));
-	this->Shop_items.add(Item(WOODEN_HAMMER));
 	this->Shop_items.add(Item(KNIFE));
-	this->Shop_items.add(Item(WOODEN_HAMMER));
-	this->Shop_items.add(Item(BOW));
+	this->Shop_items.add(Item(WOODEN_AXE));
+	this->Shop_items.add(Item(STEEL_SWORD));
+	this->Shop_items.add(Item(ELVEN_BOW));
 	this->Shop_items.add(Item(EMERALD_SWORD));
 	this->Shop_items.add(Item(DRAGONBONE_SWORD));
 	this->Shop_items.add(Item(OBSIDIAN_SWORD));
+	this->Shop_items.add(Item(CHAIN_ARMOR));
+	this->Shop_items.add(Item(STEEL_ARMOR));
 }
 
 ShopMenuState::~ShopMenuState()
@@ -601,10 +612,9 @@ void ShopMenuState::updateMenu()
 				<< "\n"
 				<< gui::msg_menudivider(40, '-')
 				<< std::string(4, ' ') << "Our available equipment number: " << this->Shop_items.size()  << "\n" << "\n";
+			;
 			std::cout << this->Shop_items.toString() << "\n";
-			std::cout
-				<< "\n"
-				<< "Choose number of wanted Item or write -1 to get back" << "\n";
+			std::cout << "\nChoose number of wanted Item or write -1 to get back\n";
 			std::cin >> this->Desired_item;
 			if (Desired_item < this->Shop_items.size() && Desired_item >= 0)
 			{

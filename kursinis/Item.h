@@ -2,6 +2,8 @@
 
 #include<string>
 #include<sstream>
+#include<iostream>
+
 
 //currently using no dmg or defence items
 enum item_types { WEAPON = 0, ARMOR };
@@ -25,7 +27,7 @@ private:
 	/////////////////////////////////////////////////////////////////////////////
 	std::string item_names[19] = {"Stick", "Stone", "Wooden_Hammer", "Knife",
 	"Wooden_Axe", "Bow", "Steel_Axe", "Steel_Sword", "Elven_Bow", 
-	"Emerald_Bow", "Dragonbone_Sword", "Obsidian_Sword", "Dirty_Clothes", 
+	"Emerald_Sword", "Dragonbone_Sword", "Obsidian_Sword", "Dirty_Clothes", 
 	"Leather_Armor", "Chain_Armor", "Iron_Armor", "Steel_Armor",
 	"Dragonbone_Armor", "Obsidian_Armor"};
 	///////////////////////////////////////////////////////////////////////////// 
