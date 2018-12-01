@@ -89,11 +89,9 @@ void GameState::saveCharacter()
 		std::cout << "Input save file name: ";
 		std::string f_name1, f_name2;
 		std::cin >> f_name1 >> f_name2;
-		std::cout << f_name1 << f_name2;
-		system("pause");
 
 		std::ofstream fo;
-		fo.open(f_name1 + f_name2 + ".save", std::ios::app);
+		fo.open(f_name1 + f_name2 + ".save");
 		//saving character stats
 		fo << this->character->Save_stats();
 		//saving character inventory

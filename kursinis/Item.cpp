@@ -1,4 +1,5 @@
 #include "Item.h"
+//#include<windows.h> 
 
 //Private funkcijos 
 void Item::generate()
@@ -58,14 +59,14 @@ const unsigned & Item::getValue()
 //Funkcijos
 const std::string Item::toString() const
 {
+	//color change dont work in these conditions 
+	//HANDLE Console = GetStdHandle(STD_OUTPUT_HANDLE);
 	std::stringstream ss;
 
 	ss << " Name: " << this->name
 		<< " | Type: " << this->item_types[this->type]
 		<< " | Rarity: " << this->item_rarities[this->rarity]
-		<< " | Value: " << this->value
-		<< "\n";
-
+		<< " | Value: " << this->value << "\n";
 	return ss.str();
 }
 

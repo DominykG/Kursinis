@@ -154,7 +154,7 @@ std::string Inventory::saveInventory() const
 	std::stringstream ss;
 	for (size_t i = 0; i < this->nrOfItems; i++)
 	{
-		ss << i << " " << this->items[i]->saveItem() << "\n";
+		ss << " " << this->items[i]->saveItem();
 	}
 	return ss.str();
 }

@@ -3,19 +3,19 @@
 //Private funkcijos
 void Character::updateStats()
 {
-	this->hpMax = this->vitality * 10 + this->vitality;
+	this->hpMax = this->attributes[VITALITY] * 10 + this->attributes[VITALITY];
 	this->hp = this->hpMax;
-	this->staminaMax = this->vitality * 2;
+	this->staminaMax = this->attributes[VITALITY] * 2;
 	this->stamina = this->staminaMax;
-	this->manaMax = this->vitality * 10 + this->vitality;
+	this->manaMax = this->attributes[VITALITY] * 10 + this->attributes[VITALITY];
 	this->mana = this->manaMax;
 
-	this->damageMin = this->strength * 2;
-	this->damageMax = this->strength + this->strength * 2;
-	this->defence = this->agility * 2;
-	this->hitRating = this->dexterity * 2 + this->dexterity;
-	this->critChance = static_cast<float>(this->dexterity) / 60;
-	this->magicFind = static_cast<float>(this->intelligence) / 70;
+	this->damageMin = this->attributes[STRENGTH] * 2;
+	this->damageMax = this->attributes[STRENGTH] + this->attributes[STRENGTH] * 2;
+	this->defence = this->attributes[AGILITY] * 2;
+	this->hitRating = this->attributes[DEXTERITY] * 2 + this->attributes[DEXTERITY];
+	this->critChance = static_cast<float>(this->attributes[DEXTERITY]) / 60;
+	this->magicFind = static_cast<float>(this->attributes[INTELLIGENCE]) / 70;
 }
 //Konstruktoriai ir dekonstruktoriai
 Character::Character(std::string name)
@@ -30,17 +30,60 @@ Character::Character(std::string name)
 	this->expNext = 46;
 	this->statpoints = 5;
 
-	this->strength = 1;
-	this->vitality = 1;
-	this->agility = 1;
-	this->dexterity = 1;
-	this->intelligence = 1;
+	this->attributes[STRENGTH] = 1;
+	this->attributes[VITALITY] = 1;
+	this->attributes[AGILITY] = 1;
+	this->attributes[DEXTERITY] = 1;
+	this->attributes[INTELLIGENCE] = 1;
 
 	this->gold = 100;
 
 	this->updateStats();
 
-	this->inventory.add(Item("test", 0, 1, 200)); // testinis daiktas inventoriuje
+	this->inventory.add(Item(1));
+}
+//constructor for loading saved character
+Character::Character()
+{
+	this->expNext = 46;
+
+	int item;
+
+	std::ifstream fi;
+	std::string f_name;
+
+	while (true)
+	{
+		std::system("cls");
+		std::cout << "Input save file name: ";
+		std::cin >> f_name;
+
+		fi.open(f_name + ".save");
+
+		if (fi.is_open())
+		{
+			fi >> this->x >> this->y >> this->name
+				>> this->level >> this->exp >> this->statpoints;
+
+			for (int i = 0; i <= 4; i++)
+			{
+				fi >> this->attributes[i];
+			}
+
+			fi >> this->gold;
+
+			this->updateStats();
+
+			while (!fi.eof())
+			{
+				fi >> item;
+				this->inventory.add(Item(item));
+			}
+			break;
+		}
+
+	}
+	std::system("pause");
 }
 
 Character::~Character()
@@ -51,27 +94,7 @@ Character::~Character()
 //Funkcjos gavimui private reiksmiu
 const int Character::getAttribute(const unsigned attribute)
 {
-	switch (attribute)
-	{
-	case STRENGTH:
-		return this->strength;
-		break;
-	case VITALITY:
-		return this->vitality;
-		break;
-	case AGILITY:
-		return this->agility;
-		break;
-	case DEXTERITY:
-		return this->dexterity;
-		break;
-	case INTELLIGENCE:
-		return this->intelligence;
-		break;
-	default:
-		return -1;
-		break;
-	}
+	return this->attributes[attribute];
 }
 
 //Funkcijos modifikuoti private reiksmes
@@ -161,11 +184,11 @@ bool Character::addExp(const int exp)
 		this->expNext = (50 / 3) * (pow(this->level, 3) - 6 * pow(this->level, 2) + (this->level * 17) - 12);
 		this->statpoints++;
 
-		this->strength += this->level % 2;
-		this->vitality += this->level % 2;
-		this->agility += this->level % 2;
-		this->dexterity += this->level % 2;
-		this->intelligence += this->level % 2;
+		this->attributes[STRENGTH] += this->level % 2;
+		this->attributes[VITALITY] += this->level % 2;
+		this->attributes[AGILITY] += this->level % 2;
+		this->attributes[DEXTERITY] += this->level % 2;
+		this->attributes[INTELLIGENCE] += this->level % 2;
 
 		levelup = true;
 	}
@@ -184,32 +207,11 @@ bool Character::addGold(const int gold)
 
 bool Character::addStatpoint(const int attribute)
 {
-	if (this->statpoints > 0)
+	if (this->statpoints > 0 && attribute >= 0 && attribute <= 4)
 	{
 		this->statpoints--;
 
-		switch (attribute)
-		{
-		case STRENGTH:
-			this->strength++;
-			break;
-		case VITALITY:
-			this->vitality++;
-			break;
-		case AGILITY:
-			this->agility++;
-			break;
-		case DEXTERITY:
-			this->dexterity++;
-			break;
-		case INTELLIGENCE:
-			this->intelligence++;
-			break;
-		default:
-			this->statpoints++;
-			return false;
-			break;
-		}
+		this->attributes[attribute]++;
 
 		this->updateStats();
 
@@ -235,13 +237,11 @@ const std::string Character::getMenuBar(const bool show_attributes)
 
 	if (show_attributes)
 	{
-		ss
-			<< "\n"
-			<< std::string(4, ' ') << " | Strength: " << this->strength << "\n"
-			<< std::string(4, ' ') << " | Vitality: " << this->vitality << "\n"
-			<< std::string(4, ' ') << " | Agility: " << this->agility << "\n"
-			<< std::string(4, ' ') << " | Dexterity: " << this->dexterity << "\n"
-			<< std::string(4, ' ') << " | Intelligence: " << this->intelligence << "\n";
+		ss << "\n";
+		for (int i = 0; i <= 4; i++)
+		{
+			ss << std::string(4, ' ') << " |" << this->attribute_names[i] << this->attributes[i] << "\n";
+		}
 	}
 
 	ss << "\n";
@@ -260,16 +260,14 @@ const std::string Character::toString()
 	ss << " Name: " << this->name << "\n" << "\n"
 		<< " Level: " << this->level << "\n"
 		<< " Exp: " << this->exp << " / " << this->expNext << "\n"
-		<< "\n"
+		<< "\n";
 
-		<< " Strenght: " << this->strength << "\n"
-		<< " Vitality: " << this->vitality << "\n"
-		<< " Agility: " << this->agility << "\n"
-		<< " Dexterity: " << this->dexterity << "\n"
-		<< " Intelligence: " << this->intelligence << "\n"
-		<< "\n"
+	for (int i = 0; i <= 4; i++)
+	{
+		ss << this->attribute_names[i] << this->attributes[i] << "\n";
+	}
 
-		<< " HP: " << this->hp << " / " << this->hpMax << "\n"
+	ss << "\n HP: " << this->hp << " / " << this->hpMax << "\n"
 		<< " Stamina: " << this->stamina << " / " << this->staminaMax << "\n"
 		<< " Mana: " << this->mana << " / " << this->manaMax << "\n"
 		<< "\n"
@@ -302,16 +300,14 @@ const std::string Character::toStringStats()
 
 	ss << " Level: " << this->level << "\n"
 		<< " Exp: " << this->exp << " / " << this->expNext << "\n"
-		<< "\n"
+		<< "\n";
 
-		<< " Strenght: " << this->strength << "\n"
-		<< " Vitality: " << this->vitality << "\n"
-		<< " Agility: " << this->agility << "\n"
-		<< " Dexterity: " << this->dexterity << "\n"
-		<< " Intelligence: " << this->intelligence << "\n"
-		<< "\n"
+	for (int i = 0; i <= 4; i++)
+	{
+		ss << this->attribute_names[i] << this->attributes[i] << "\n";
+	}
 
-		<< " HP: " << this->hp << " / " << this->hpMax << "\n"
+	ss << "\n HP: " << this->hp << " / " << this->hpMax << "\n"
 		<< " Stamina: " << this->stamina << " / " << this->staminaMax << "\n"
 		<< " Mana: " << this->mana << " / " << this->manaMax << "\n"
 		<< "\n"
@@ -338,23 +334,14 @@ const std::string Character::Save_stats()
 		<< " " << this->level
 		<< " " << this->exp
 		<< " " << this->statpoints
-		<< std::endl//attributes
-		<< " " << this->strength
-		<< " " << this->vitality
-		<< " " << this->agility
-		<< " " << this->dexterity
-		<< " " << this->intelligence
-		<< std::endl//money
-		<< " " << this->gold << std::endl;
+		<< std::endl;//attributes
+
+	for (int i = 0; i <= 4; i++)
+	{
+		ss << this->attributes[i] << " ";
+	}
+
+	ss << "\n" << this->gold << std::endl;
 
 	return ss.str();
 }
-
-/*void Character::Load_stats(std::ifstream& fi)
-{
-	
-	unsigned x, unsigned y, std::string name,
-	int level, int exp, int statp,
-	int str, int vit, int ag, int dext, int intl, int g;
-
-}*/
