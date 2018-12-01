@@ -5,6 +5,7 @@
 #include<vector>
 #include<sstream>
 #include<cmath>
+#include<fstream>
 #include"Inventory.h"
 
 //(50/3) * (pow(x, 3) - 6*pow(x, 2) + (x * 17) - 12);
@@ -35,11 +36,16 @@ private:
 	int manaMax;
 
 	//atributai
-	int strength; //Didina zala
-	int vitality; //Didina  HP ir staminos max
-	int agility; //Didina defence
-	int dexterity; //Didina Pataikymo sansa ir krit chance
-	int intelligence; //Didina max mana ir geresniu daiktu radimo %
+	//int strength; //Didina zala
+	//int vitality; //Didina  HP ir staminos max
+	//int agility; //Didina defence
+	//int dexterity; //Didina Pataikymo sansa ir krit chance
+	//int intelligence; //Didina max mana ir geresniu daiktu radimo %
+
+	//use attributes[STRENGTH]; to get strength and so on
+	int attributes[5];
+	std::string attribute_names[5] = { " Strength: ", " Vitality: ", " Agility: ",
+										" Dexterity: ", " Intelligence: " };
 
 	int damageMin;
 	int damageMax;
@@ -64,6 +70,7 @@ private:
 
 public:
 	Character(std::string name);
+	Character();
 	virtual ~Character();
 
 	//Funkcjos gavimui private reiksmiu
@@ -101,6 +108,5 @@ public:
 	const std::string toStringStats();
 
 	const std::string Save_stats();
-	//void Load_stats(std::ifstream& input);
 };
 

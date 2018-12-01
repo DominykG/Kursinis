@@ -23,6 +23,7 @@ public:
 	void printMenu();
 	void updateMenu();
 	void update();
+	void loadGame();
 };
 
 class CharacterMenuState :
