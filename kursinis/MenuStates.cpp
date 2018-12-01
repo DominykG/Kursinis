@@ -547,13 +547,15 @@ ShopMenuState::ShopMenuState(
 	this->states = states;
 	this->Shop_items.add(Item(STICK));
 	this->Shop_items.add(Item(STONE));
-	this->Shop_items.add(Item(WOODEN_HAMMER));
 	this->Shop_items.add(Item(KNIFE));
-	this->Shop_items.add(Item(WOODEN_HAMMER));
-	this->Shop_items.add(Item(BOW));
+	this->Shop_items.add(Item(WOODEN_AXE));
+	this->Shop_items.add(Item(STEEL_SWORD));
+	this->Shop_items.add(Item(ELVEN_BOW));
 	this->Shop_items.add(Item(EMERALD_SWORD));
 	this->Shop_items.add(Item(DRAGONBONE_SWORD));
 	this->Shop_items.add(Item(OBSIDIAN_SWORD));
+	this->Shop_items.add(Item(CHAIN_ARMOR));
+	this->Shop_items.add(Item(STEEL_ARMOR));
 }
 
 ShopMenuState::~ShopMenuState()
@@ -601,7 +603,8 @@ void ShopMenuState::updateMenu()
 				<< "\n"
 				<< gui::msg_menudivider(40, '-')
 				<< std::string(4, ' ') << "Our available equipment number: " << this->Shop_items.size()  << "\n" << "\n";
-			std::cout << this->Shop_items.toString() << "\n";
+			this->Shop_items.toString();
+			std::cout << "\n";
 			std::cout
 				<< "\n"
 				<< "Choose number of wanted Item or write -1 to get back" << "\n";

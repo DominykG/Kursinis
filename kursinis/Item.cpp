@@ -1,4 +1,5 @@
 #include "Item.h"
+#include<windows.h> 
 
 //Private funkcijos 
 void Item::generate()
@@ -58,13 +59,47 @@ const unsigned & Item::getValue()
 //Funkcijos
 const std::string Item::toString() const
 {
+	HANDLE Console = GetStdHandle(STD_OUTPUT_HANDLE);
 	std::stringstream ss;
 
-	ss << " Name: " << this->name
+	std::cout << " Name: " << this->name
 		<< " | Type: " << this->item_types[this->type]
-		<< " | Rarity: " << this->item_rarities[this->rarity]
-		<< " | Value: " << this->value
-		<< "\n";
+		<< " | Rarity: ";
+	switch (this->rarity)
+	{
+	case UNCOMMON:
+		SetConsoleTextAttribute(Console, 0b00001010);
+		std::cout << this->item_rarities[this->rarity];
+		SetConsoleTextAttribute(Console, 0b00000111);
+		break;
+
+	case RARE:
+		SetConsoleTextAttribute(Console, 0b00001001);
+		std::cout << this->item_rarities[this->rarity];
+		SetConsoleTextAttribute(Console, 0b00000111);
+		break;
+
+	case EPIC:
+		SetConsoleTextAttribute(Console, 0b00001101);
+		std::cout << this->item_rarities[this->rarity];
+		SetConsoleTextAttribute(Console, 0b00000111);
+		break;
+
+	case LEGENDARY:
+		SetConsoleTextAttribute(Console, 0b00001100);
+		std::cout << this->item_rarities[this->rarity];
+		SetConsoleTextAttribute(Console, 0b00000111);
+		break;
+
+	default:
+		std::cout << this->item_rarities[this->rarity];
+		break;
+	}
+	std::cout << " | Value: "; 
+
+	SetConsoleTextAttribute(Console, 0b00001110);
+	std::cout << this->value << "\n";
+	SetConsoleTextAttribute(Console, 0b00000111);
 
 	return ss.str();
 }

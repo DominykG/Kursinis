@@ -2,6 +2,7 @@
 #include "MenuStates.h"
 #include <fstream>
 
+
 class Game
 {
 private:
