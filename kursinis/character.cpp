@@ -36,7 +36,7 @@ Character::Character(std::string name)
 	this->attributes[DEXTERITY] = 1;
 	this->attributes[INTELLIGENCE] = 1;
 
-	this->gold = 100;
+	this->gold = 1000000;
 
 	this->updateStats();
 

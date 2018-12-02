@@ -563,8 +563,13 @@ ShopMenuState::ShopMenuState(
 	this->Shop_items.add(Item(EMERALD_SWORD));
 	this->Shop_items.add(Item(DRAGONBONE_SWORD));
 	this->Shop_items.add(Item(OBSIDIAN_SWORD));
+	this->Shop_items.add(Item(LEATHER_ARMOR));
 	this->Shop_items.add(Item(CHAIN_ARMOR));
+	this->Shop_items.add(Item(IRON_ARMOR));
 	this->Shop_items.add(Item(STEEL_ARMOR));
+	this->Shop_items.add(Item(DRAGON_BONE_ARMOR));
+	this->Shop_items.add(Item(OBSIDIAN_ARMOR));
+
 }
 
 ShopMenuState::~ShopMenuState()
@@ -614,13 +619,22 @@ void ShopMenuState::updateMenu()
 				<< std::string(4, ' ') << "Our available equipment number: " << this->Shop_items.size()  << "\n" << "\n";
 			;
 			std::cout << this->Shop_items.toString() << "\n";
-			std::cout << "\nChoose number of wanted Item or write -1 to get back\n";
+			std::cout << "\nChoose number of wanted Item or write -1 to get back\n\n Your choice: ";
 			std::cin >> this->Desired_item;
 			if (Desired_item < this->Shop_items.size() && Desired_item >= 0)
 			{
-				std::cout << "You bought " << Shop_items.at(Desired_item).toString();
-				// delete padaryti is Shop meniu
-				this->character->getInventory().add(Shop_items.at(Desired_item));
+				if (this->character->getGold() >= Shop_items.at(Desired_item).getValue())
+				{
+					std::cout << "You bought: " << Shop_items.at(Desired_item).getName();
+					// delete padaryti is Shop meniu
+					this->character->addGold(Shop_items.at(Desired_item).getValue()*-1);
+					this->character->getInventory().add(Shop_items.at(Desired_item));
+					this->Shop_items.remove(Desired_item);
+				}
+				else {
+					std::cout << "Sorry but you don't have enought of gold to buy: " << Shop_items.at(Desired_item).getName()
+							  << "It's value: " << Shop_items.at(Desired_item).getValue();
+				}
 			}
 			else if (Desired_item == -1)
 			{

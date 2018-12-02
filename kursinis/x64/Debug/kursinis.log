@@ -1,8 +1,7 @@
-﻿  Inventory.cpp
-  character.cpp
-d:\_university\kursinis\rpg_kursinis\kursinis\character.h(88): warning C4244: 'return': conversion from 'float' to 'const int', possible loss of data
-d:\_university\kursinis\rpg_kursinis\kursinis\character.cpp(16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-d:\_university\kursinis\rpg_kursinis\kursinis\character.cpp(190): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-d:\_university\kursinis\rpg_kursinis\kursinis\character.cpp(257): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  Generating Code...
-  kursinis.vcxproj -> D:\_university\Kursinis\RPG_Kursinis\x64\Debug\kursinis.exe
+﻿  MenuStates.cpp
+c:\users\fanta\documents\github\kursinis\kursinis\character.h(88): warning C4244: 'return': conversion from 'float' to 'const int', possible loss of data
+c:\users\fanta\documents\github\kursinis\kursinis\enemy.h(30): warning C4244: 'return': conversion from 'const float' to 'const int', possible loss of data
+c:\users\fanta\documents\github\kursinis\kursinis\menustates.cpp(326): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+c:\users\fanta\documents\github\kursinis\kursinis\menustates.cpp(624): warning C4018: '<': signed/unsigned mismatch
+c:\users\fanta\documents\github\kursinis\kursinis\menustates.cpp(626): warning C4018: '>=': signed/unsigned mismatch
+  kursinis.vcxproj -> C:\Users\Fanta\Documents\GitHub\Kursinis\x64\Debug\kursinis.exe

@@ -63,10 +63,10 @@ const std::string Item::toString() const
 	//HANDLE Console = GetStdHandle(STD_OUTPUT_HANDLE);
 	std::stringstream ss;
 
-	ss << " Name: " << this->name
-		<< " | Type: " << this->item_types[this->type]
-		<< " | Rarity: " << this->item_rarities[this->rarity]
-		<< " | Value: " << this->value << "\n";
+	ss << "  Name: " << this->name
+		<< "  | Type: " << this->item_types[this->type]
+		<< "  | Rarity: " << this->item_rarities[this->rarity]
+		<< "  | Value: " << this->value << "\n";
 	return ss.str();
 }
 

@@ -131,10 +131,12 @@ void Inventory::add(const Item & item)
 void Inventory::remove(const unsigned index)
 {
 	//2018-11-28
-	if (index < 0 || index >= this->nrOfItems)
-	{
-		throw("OUT OF BOUNDS!");
-	}
+	delete this->items[index];
+		for (int i =index; i< nrOfItems-1; i++)
+		{
+			this->items[i] = this->items[i + 1];
+		}
+		nrOfItems--;
 }
 
 std::string Inventory::toString() const
@@ -143,7 +145,7 @@ std::string Inventory::toString() const
 
 	for (size_t i = 0; i < this->nrOfItems; i++)
 	{
-		ss << i << ": " << this->items[i]->toString() << "\n";
+		ss << i << ":  " << this->items[i]->toString() << "\n";
 	}
 
 	return ss.str();
