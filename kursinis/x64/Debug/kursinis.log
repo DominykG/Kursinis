@@ -1,7 +1,9 @@
 ﻿  MenuStates.cpp
 c:\users\fanta\documents\github\kursinis\kursinis\character.h(88): warning C4244: 'return': conversion from 'float' to 'const int', possible loss of data
 c:\users\fanta\documents\github\kursinis\kursinis\enemy.h(30): warning C4244: 'return': conversion from 'const float' to 'const int', possible loss of data
-c:\users\fanta\documents\github\kursinis\kursinis\menustates.cpp(326): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
-c:\users\fanta\documents\github\kursinis\kursinis\menustates.cpp(624): warning C4018: '<': signed/unsigned mismatch
-c:\users\fanta\documents\github\kursinis\kursinis\menustates.cpp(626): warning C4018: '>=': signed/unsigned mismatch
+c:\users\fanta\documents\github\kursinis\kursinis\menustates.cpp(273): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\fanta\documents\github\kursinis\kursinis\menustates.cpp(327): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+c:\users\fanta\documents\github\kursinis\kursinis\menustates.cpp(626): warning C4018: '<': signed/unsigned mismatch
+c:\users\fanta\documents\github\kursinis\kursinis\menustates.cpp(628): warning C4018: '>=': signed/unsigned mismatch
+c:\users\fanta\documents\github\kursinis\kursinis\menustates.cpp(667): warning C4018: '<': signed/unsigned mismatch
   kursinis.vcxproj -> C:\Users\Fanta\Documents\GitHub\Kursinis\x64\Debug\kursinis.exe

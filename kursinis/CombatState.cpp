@@ -22,7 +22,6 @@ void CombatState::beginCombat()
 
 	int turn = rand() % 2;
 	int round = 0;
-	int damageTaken = 0;
 	srand(time(NULL));
 
 	while (!endCombat)
@@ -69,7 +68,6 @@ void CombatState::beginCombat()
 			{
 				damage = rand() % (enemy.getDamageMax() - enemy.getDamageMin()) + enemy.getDamageMin();
 				this->character->takeDamage(damage);
-				damageTaken += damage;
 			}
 
 			std::cout << atkStr << " HIT " << defStr << " FOR " << damage << "!" << "\n";
@@ -106,7 +104,6 @@ void CombatState::beginCombat()
 			//Turetu dar ir daiktu drop'a gaut bet dar to nera
 			this->character->addExp(gainedExp);
 			this->character->addGold(gainedGold);
-			this->character->takeDamage(damageTaken);
 			std::cout << "YOU DEFEATED THE ENEMY AND GAINED " << gainedExp << " EXP and " << gainedGold << " gold " <<"\n";
 			
 			this->setQuit(true);

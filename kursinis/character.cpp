@@ -36,11 +36,18 @@ Character::Character(std::string name)
 	this->attributes[DEXTERITY] = 1;
 	this->attributes[INTELLIGENCE] = 1;
 
-	this->gold = 1000000;
+	this->gold = 100; // for debug purposes
 
 	this->updateStats();
 
+	this->inventory.add(Item(0));
 	this->inventory.add(Item(1));
+	this->inventory.add(Item(2));
+	this->inventory.add(Item(3));
+	this->inventory.add(Item(4));
+	this->inventory.add(Item(5));
+	this->inventory.add(Item(6));
+	this->inventory.add(Item(7));
 }
 //constructor for loading saved character
 Character::Character()
@@ -55,8 +62,9 @@ Character::Character()
 	while (true)
 	{
 		std::system("cls");
-		std::cout << "Input save file name: ";
-		std::cin >> f_name;
+		std::cout << "Input save file name: "; 
+		std::getline(std::cin, f_name);
+
 
 		fi.open(f_name + ".save");
 
@@ -190,10 +198,11 @@ bool Character::addExp(const int exp)
 		this->attributes[DEXTERITY] += this->level % 2;
 		this->attributes[INTELLIGENCE] += this->level % 2;
 
+		this->updateStats();
 		levelup = true;
 	}
 
-	this->updateStats();
+	//this->updateStats();
 
 	return levelup;
 }

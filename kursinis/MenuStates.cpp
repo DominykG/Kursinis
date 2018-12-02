@@ -270,6 +270,7 @@ void TravelMenuState::updateEncounterMenu()
 		case EMPTY:
 		{
 
+			srand(time(NULL)); // fix, kad priesai tikrai randominiai butu 
 			int randomnr = rand() % 2;
 			this->locationString = "You are in an empty plane.";
 
@@ -611,16 +612,17 @@ void ShopMenuState::updateMenu()
 
 		while (!Leave_Shop == true) {
 			std::cout << "You picked up a right place to buy new gear ! " << "\n";
-			std::cout
-				<< "\n"
-				<< std::string(4, ' ') << "Your amount of gold:" << this->character->getGold()
-				<< "\n"
-				<< gui::msg_menudivider(40, '-')
-				<< std::string(4, ' ') << "Our available equipment number: " << this->Shop_items.size()  << "\n" << "\n";
-			;
+			std::cout << "\n"
+					<< std::string(4, ' ') << "Your amount of gold:" << this->character->getGold()
+					<< "\n"
+					<< gui::msg_menudivider(40, '-')
+					<< std::string(4, ' ') << "Our available equipment number: " << this->Shop_items.size()  << "\n" << "\n";
+			
+
 			std::cout << this->Shop_items.toString() << "\n";
 			std::cout << "\nChoose number of wanted Item or write -1 to get back\n\n Your choice: ";
 			std::cin >> this->Desired_item;
+
 			if (Desired_item < this->Shop_items.size() && Desired_item >= 0)
 			{
 				if (this->character->getGold() >= Shop_items.at(Desired_item).getValue())
@@ -645,11 +647,42 @@ void ShopMenuState::updateMenu()
 			system ("cls");
 			
 		}
+
 		break;
 	case 2:
 		system("CLS");
-		std::cout << "Our shop accepts everything so show me your items ! " << "\n";
-		system("PAUSE");
+		
+		while (!Leave_Shop == true) {
+			std::cout << "Our shop accepts everything so show me your items ! " << "\n" << "\n"
+				<< std::string(4, ' ') << "Your amount of gold:" << this->character->getGold()
+				<< "\n"
+				<< gui::msg_menudivider(40, '-')
+				<< std::string(4, ' ') << "Your available equipment to sell number: " << this->character->getInventory().size() << "\n" << "\n";
+
+
+			std::cout << this->character->getInventory().toString() << "\n";
+			std::cout << "\nChoose number of Item you want to sell, (-1 to leave shop) "<< "\n\n" << " Your choice: ";
+			std::cin >> this->Desired_item;
+
+			if (Desired_item < this->character->getInventory().size() && Desired_item >= 0)
+			{
+					std::cout << "You sold: " << this->character->getInventory().at(Desired_item).getName() << " for " << this->character->getInventory().at(Desired_item).getValue() << " gold";
+					this->character->addGold(this->character->getInventory().at(Desired_item).getValue());
+					this->character->getInventory().remove(Desired_item);
+					
+				
+				
+			}
+			else if (Desired_item == -1)
+			{
+				Leave_Shop = true;
+			}
+			else std::cout << "Invalid input" << "\n";
+			system("PAUSE");
+			system("cls");
+
+		}
+
 		break;
 	default:
 		system("CLS");

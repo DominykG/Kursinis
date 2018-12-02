@@ -128,6 +128,7 @@ void Inventory::add(const Item & item)
 	this->items[this->nrOfItems++] = new Item(item);
 }
 
+
 void Inventory::remove(const unsigned index)
 {
 	//2018-11-28
