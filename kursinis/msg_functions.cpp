@@ -35,3 +35,4 @@ const std::string gui::msg_error(const std::string msg)
 
 	return ss.str();
 }
+

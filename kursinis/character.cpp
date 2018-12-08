@@ -40,14 +40,6 @@ Character::Character(std::string name)
 
 	this->updateStats();
 
-	this->inventory.add(Item(0));
-	this->inventory.add(Item(1));
-	this->inventory.add(Item(2));
-	this->inventory.add(Item(3));
-	this->inventory.add(Item(4));
-	this->inventory.add(Item(5));
-	this->inventory.add(Item(6));
-	this->inventory.add(Item(7));
 }
 //constructor for loading saved character
 Character::Character()

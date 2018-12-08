@@ -276,15 +276,13 @@ void TravelMenuState::printMenu()
 	std::cout << gui::msg_menutitle("Travel Menu");
 
 	std::cout
-		<< this->character->getMenuBar();
-
+		<< this->character->getMenuBar()
+		<< gui::msg_menudivider(40, '-');
 	std::cout
-		<< "\n"
-		<< std::string(4, ' ') << this->character->toStringPosition()
-		<< "\n"
-		<< std::string(4, ' ') << "Location: " << this->locationString << "\n"
-		<< "\n"
-		<< std::string(4, ' ') << "Minimap: " << "\n" << this->minimapString << "\n";
+		<< std::string(4, ' ') << " Your position on map: " << this->character->toStringPosition()
+		<< std::string(4, ' ') << " Location: " << this->locationString << "\n\n"
+		<< gui::msg_menudivider(40, '-')
+		<< std::string(4, ' ') << " Minimap" << "\n\n" <<  this->minimapString << "\n";
 
 	std::cout
 		<< gui::msg_menudivider(40, '-')
@@ -363,31 +361,32 @@ void TravelMenuState::updateMinimap()
 
 	for (size_t y = startY; y <= endY; y++)
 	{
+		ss << "    ";
 		for (size_t x = startX; x <= endX; x++)
 		{
 			srand(x + y);
 			int location = rand() % this->nrOfLocations;
 
 			if (x == this->character->getX() && y == this->character->getY())
-				ss << "(P) ";
+				ss << " (P)";
 			else
 			{
 				switch (location)
 				{
 				case EMPTY:
-					ss << "Em ";
+					ss << " Em ";
 					break;
 				case FARM:
-					ss << "Fa ";
+					ss << " Fa ";
 					break;
 				case CITY:
-					ss << "Ci ";
+					ss << " Ci ";
 					break;
 				case SHOP:
-					ss << "Sh ";
+					ss << " Sh ";
 					break;
 				case CHEST:
-					ss << "Ch ";
+					ss << " Ch ";
 					break;
 				}
 			}
