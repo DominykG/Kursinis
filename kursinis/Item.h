@@ -23,7 +23,6 @@ private:
 	unsigned rarity;
 	unsigned value;
 	int item_nr;
-	void generate();
 	/////////////////////////////////////////////////////////////////////////////
 	std::string item_names[19] = {"Stick", "Stone", "Wooden_Hammer", "Knife",
 	"Wooden_Axe", "Bow", "Steel_Axe", "Steel_Sword", "Elven_Bow", 
@@ -62,6 +61,7 @@ public:
 	//Funkcijos
 	const std::string toString() const;
 	int saveItem();
+	int generate();
 };
 
 

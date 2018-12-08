@@ -217,12 +217,14 @@ void CharacterStatMenuState::update()
 
 TravelMenuState::TravelMenuState(
 	Character*& character,
-	std::stack<State*>* states)
-	: character(character), State()
+	std::stack<State*>* states
+	)
+	: character(character), State(), Item(0)
 {
 	this->states = states;
 	this->locationString = "NONE";
 	this->nrOfLocations = 5;
+	
 }
 
 TravelMenuState::~TravelMenuState()
@@ -231,6 +233,42 @@ TravelMenuState::~TravelMenuState()
 }
 
 //Funkcijos
+
+void TravelMenuState::riddle() // complete tomorrow
+{
+	int variation;
+	int a_koof, b_koof, c_koof;
+	Item Chest(0);
+	srand(time(NULL));
+	a_koof = rand() % 10+1 *1; b_koof = rand() % 10 +1*2; c_koof = rand() % 10+1 *3; 
+	variation = rand() % 3;
+	if (variation == 0) {
+		std::cout << " Solve this equation: x+" << b_koof<<"*"<< a_koof<< '='<< c_koof <<" to open chest! \n";
+		RiddleAnswer = c_koof - (b_koof*a_koof);
+	}
+	else if (variation == 1) {
+		std::cout << " Solve this equation: " << b_koof << "+x-" << c_koof << '=' << a_koof << " to open chest! \n";
+		RiddleAnswer = a_koof-b_koof + c_koof;
+	}
+	else if (variation == 2) {
+		std::cout << " Solve this equation: "<< a_koof<< "*" << c_koof  <<  "+x=" << b_koof << " to open chest! \n";
+		RiddleAnswer = (b_koof -(a_koof * c_koof));
+	}
+	std::cout << " Your answer: ";
+	std::cin >> PlayerAnswer;
+	if (PlayerAnswer == RiddleAnswer) {
+
+		this->lootnr = Chest.generate();
+		this->character->getInventory().add(this->lootnr);
+		std::cout << " You sucessfully solved equation, chest contained: " <<
+		this->character->getInventory().at(this->character->getInventory().size() - 1).getName() << "\n\n";
+		system("pause");
+	}
+	else {
+		std::cout << " You made a mistake and suddently chest dissolved in air \n\n";
+		system("pause");
+	}
+}
 
 void TravelMenuState::printMenu()
 {
@@ -250,11 +288,12 @@ void TravelMenuState::printMenu()
 
 	std::cout
 		<< gui::msg_menudivider(40, '-')
+
 		<< gui::msg_menuitem(-1, "Back to menu")
-		<< gui::msg_menuitem(1, "UP")
 		<< gui::msg_menuitem(2, "DOWN")
-		<< gui::msg_menuitem(3, "LEFT")
-		<< gui::msg_menuitem(4, "RIGHT")
+		<< gui::msg_menuitem(4, "LEFT")
+		<< gui::msg_menuitem(6, "RIGHT")
+		<< gui::msg_menuitem(8, "UP")
 		<< gui::msg_menuitem(5, "Restore your health "); //2018-11-28
 }
 
@@ -264,7 +303,6 @@ void TravelMenuState::updateEncounterMenu()
 	{
 		srand(this->character->getSeed());
 		int location = rand() % this->nrOfLocations;
-
 		switch (location)
 		{
 		case EMPTY:
@@ -275,7 +313,7 @@ void TravelMenuState::updateEncounterMenu()
 			this->locationString = "You are in an empty plane.";
 
 
-			if (randomnr)
+			if (randomnr==1)
 			{
 				system("cls");
 				std::cout << "ENEMY ENCOUTERED!" << "\n";
@@ -295,7 +333,10 @@ void TravelMenuState::updateEncounterMenu()
 			this->locationString = "You find a shop.";
 			break;
 		case CHEST:
-			this->locationString = "You found a chest!.";
+			this->locationString = "You are in old ruins!";
+			system("cls");
+			std::cout << " You found an old ruins! While exploring the ruins you located a locked chest\n\n";
+			this->riddle();
 			break;
 		default:
 			std::cout << "ERROR NO SUCH LOCATION!" << "\n";
@@ -365,17 +406,17 @@ void TravelMenuState::updateMenu()
 	case -1:
 		this->setQuit(true);
 		break;
-	case 1:
-		this->character->move(0, -1);
-		break;
 	case 2:
 		this->character->move(0, 1);
 		break;
-	case 3:
+	case 4:
 		this->character->move(-1, 0);
 		break;
-	case 4:
+	case 6:
 		this->character->move(1, 0);
+		break;
+	case 8:
+		this->character->move(0, -1);
 		break;
 	case 5: //2018-11-28
 		this->character->reset();
@@ -554,6 +595,7 @@ ShopMenuState::ShopMenuState(
 	std::stack<State*>* states)
 	: character(character), State()
 {
+	// ne visi daiktai yra feat ar pataisyt???
 	this->states = states;
 	this->Shop_items.add(Item(STICK));
 	this->Shop_items.add(Item(STONE));

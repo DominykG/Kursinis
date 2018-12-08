@@ -1,11 +1,8 @@
 #include "Item.h"
-//#include<windows.h> 
+#include<iomanip>
 
 //Private funkcijos 
-void Item::generate()
-{
 
-} 
 
 //Konstruktoriai ir dekonstruktoriai
 Item::Item(
@@ -75,4 +72,53 @@ int Item::saveItem()
 	//saves only legit item 'look Item.h'
 	//all custom items are *magicaly* turn into sticks
 	return this->item_nr;
+}
+
+int Item::generate()
+{
+	srand(time(NULL));
+	int randomnr = rand() % 1000 + 1;
+	int lootType, lootNr;
+	lootType = rand() % 2;
+	if (randomnr >=0 && randomnr <= 30){ //Legendary 3%
+
+		if (lootType == 0)
+			lootNr = rand() % 2 + 10;
+		else
+			lootNr = rand() % 2 + 17;
+		return lootNr;
+	}
+	else if (randomnr >= 31 && randomnr <=100 ) { //Epic 7%
+
+		if (lootType == 0)
+			lootNr = rand() % 2 + 8;
+		else 
+			lootNr = 16;
+		return lootNr;
+	}
+	else if (randomnr >= 101 && randomnr <= 300) { //Rare 20%
+
+		if (lootType == 0)
+			lootNr = rand() % 2 + 6;
+		else
+			lootNr = 15;
+		return lootNr;
+	}
+	else if (randomnr >= 301 && randomnr <= 600) { //Unc 30%
+
+		if (lootType == 0)
+			lootNr = rand() % 3 + 3;
+		else
+			lootNr = rand() % 2 + 13;
+		return lootNr;
+	}
+	else if (randomnr >= 601 && randomnr <= 1000) { //Com 40%
+
+		if (lootType == 0)
+			lootNr = rand() % 3;
+		else
+			lootNr = 12;
+		return lootNr;
+	}
+	
 }

@@ -66,7 +66,7 @@ public:
 };
 
 class TravelMenuState :
-	public State
+	public State, Item
 {
 private:
 	Character *& character;
@@ -74,16 +74,18 @@ private:
 	std::string locationString;
 	std::string minimapString;
 	int nrOfLocations;
-
+	int lootnr, RiddleAnswer, PlayerAnswer;
 public:
 	TravelMenuState(
 		Character*& character,
-		std::stack<State*>* states);
+		std::stack<State*>* states
+		);
 	virtual ~TravelMenuState();
 
+	
 	//Funkcijos
 
-
+	void riddle();
 	void printMenu();
 	void updateEncounterMenu();
 	void updateMinimap();
