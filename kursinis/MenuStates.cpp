@@ -83,6 +83,7 @@ void MainMenuState::update()
 void MainMenuState::loadGame()
 {
 	this->characterList->push_back(new Character());
+	this->activeCharacter++;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -462,7 +463,7 @@ void CharacterCreatorState::createCharacter()
 	if (this->characterList->size() < this->maxCharacters)
 	{
 		std::string name = "";
-		std::string bio = "";
+		//std::string bio = "";do we need that?
 
 		std::cout << " Name: ";
 		std::getline(std::cin, name);

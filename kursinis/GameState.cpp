@@ -80,18 +80,18 @@ void GameState::update()
 
 void GameState::saveCharacter()
 {
-	char answer;
+	std::string answer;
 	std::cout << "Do you want to save the game?(y/n) ";
-	std::cin >> answer;
+	std::getline(std::cin, answer);
 
-	if (answer == 'y')
+	if (answer == "y")
 	{
-		std::cout << "Input save file name: ";
-		std::string f_name1, f_name2;
-		std::cin >> f_name1 >> f_name2;
-
+		std::string f_name;
 		std::ofstream fo;
-		fo.open(f_name1 + f_name2 + ".save");
+		std::cout << "Input save file name: ";
+		std::getline(std::cin, f_name);
+
+		fo.open(f_name + ".save");
 		//saving character stats
 		fo << this->character->Save_stats();
 		//saving character inventory
