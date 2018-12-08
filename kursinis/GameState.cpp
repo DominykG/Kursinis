@@ -25,9 +25,8 @@ void GameState::printMenu()
 		<< gui::msg_menudivider(40, '-')
 		<< gui::msg_menuitem(-1, "Quit to main menu.")
 		<< gui::msg_menuitem(1, "Character Menu.")
-		<< gui::msg_menuitem(2, "Shop Menu.")
-		<< gui::msg_menuitem(3, "Travel Menu.")
-		<< gui::msg_menuitem(4, "Rest for a while.")
+		<< gui::msg_menuitem(2, "Travel Menu.")
+		<< gui::msg_menuitem(3, "Rest for a while.")
 		<< gui::msg_menudivider(40, '-');
 }
 
@@ -44,14 +43,10 @@ void GameState::updateMenu()
 		break;
 
 	case 2:
-		this->states->push(new ShopMenuState(this->character, this->states)); // 2018-11-28
-		break;
-
-	case 3:
 		this->states->push(new TravelMenuState(this->character, this->states));
 		break;
 
-	case 4:
+	case 3:
 		system("cls");
 		this->character->reset();
 		// save me padaryk

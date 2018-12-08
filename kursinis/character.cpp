@@ -40,6 +40,8 @@ Character::Character(std::string name)
 
 	this->updateStats();
 
+	this->inventory.add(12);
+
 }
 //constructor for loading saved character
 Character::Character()
@@ -299,28 +301,30 @@ const std::string Character::toStringStats()
 {
 	std::stringstream ss;
 
-	ss << " Level: " << this->level << "\n"
-		<< " Exp: " << this->exp << " / " << this->expNext << "\n"
+	ss  << std::string(4, ' ') << " Character Name: " << this->name << "\n"
+		<< std::string(45, '-') << "\n"
+		<< std::string(4, ' ') << " Level: " << this->level << "\n"
+		<< std::string(4, ' ') << " Exp: " << this->exp << " / " << this->expNext << "\n"
 		<< "\n";
 
 	for (int i = 0; i <= 4; i++)
 	{
-		ss << this->attribute_names[i] << this->attributes[i] << "\n";
+		ss << std::string(4, ' ') << this->attribute_names[i] << this->attributes[i] << "\n";
 	}
 
-	ss << "\n HP: " << this->hp << " / " << this->hpMax << "\n"
-		<< " Stamina: " << this->stamina << " / " << this->staminaMax << "\n"
-		<< " Mana: " << this->mana << " / " << this->manaMax << "\n"
+	ss  << "\n" << std::string(4, ' ') << " HP: " << this->hp << " / " << this->hpMax << "\n"
+		<< std::string(4, ' ') << " Stamina: " << this->stamina << " / " << this->staminaMax << "\n"
+		<< std::string(4, ' ') << " Mana: " << this->mana << " / " << this->manaMax << "\n"
 		<< "\n"
 
-		<< " Damage: " << this->damageMin << " - " << this->damageMax << "\n"
-		<< " Defence: " << this->defence << "\n"
-		<< " Hit rating: " << this->hitRating << "\n"
-		<< " Crit chance: " << this->critChance << "\n"
-		<< " Magic find: " << this->magicFind << "\n"
+		<< std::string(4, ' ') << " Damage: " << this->damageMin << " - " << this->damageMax << "\n"
+		<< std::string(4, ' ') << " Defence: " << this->defence << "\n"
+		<< std::string(4, ' ') << " Hit rating: " << this->hitRating << "\n"
+		<< std::string(4, ' ') << " Crit chance: " << this->critChance << "%\n"
+		<< std::string(4, ' ') << " Magic find: " << this->magicFind << "%\n"
 		<< "\n"
 
-		<< " Gold: " << this->gold << "\n"
+		<< std::string(4, ' ') << " Gold: " << this->gold << "\n"
 		<< "\n";
 
 	return ss.str();
