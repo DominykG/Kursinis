@@ -146,7 +146,7 @@ std::string Inventory::toString() const
 
 	for (size_t i = 0; i < this->nrOfItems; i++)
 	{
-		ss << i << ":  " << this->items[i]->toString() << "\n";
+		ss << std::string(4, ' ') << i << "." << this->items[i]->toString() << "\n";
 	}
 
 	return ss.str();

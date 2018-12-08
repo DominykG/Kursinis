@@ -1,6 +1,14 @@
 ﻿  character.cpp
+<<<<<<< HEAD
 d:\_university\kursinis\rpg_kursinis\kursinis\character.h(88): warning C4244: 'return': conversion from 'float' to 'const int', possible loss of data
 d:\_university\kursinis\rpg_kursinis\kursinis\character.cpp(16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 d:\_university\kursinis\rpg_kursinis\kursinis\character.cpp(184): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 d:\_university\kursinis\rpg_kursinis\kursinis\character.cpp(229): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   kursinis.vcxproj -> D:\_university\Kursinis\RPG_Kursinis\x64\Debug\kursinis.exe
+=======
+c:\users\fanta\documents\github\kursinis\kursinis\character.h(88): warning C4244: 'return': conversion from 'float' to 'const int', possible loss of data
+c:\users\fanta\documents\github\kursinis\kursinis\character.cpp(16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\fanta\documents\github\kursinis\kursinis\character.cpp(186): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\fanta\documents\github\kursinis\kursinis\character.cpp(231): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  kursinis.vcxproj -> C:\Users\Fanta\Documents\GitHub\Kursinis\x64\Debug\kursinis.exe
+>>>>>>> ef7e83ceea0069a5e917c7b56adc03eabb3dc4df

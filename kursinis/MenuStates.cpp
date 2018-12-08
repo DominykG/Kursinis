@@ -127,6 +127,7 @@ void CharacterMenuState::updateMenu()
 		break;
 	case 1:
 		system("CLS");
+		std::cout << gui::msg_menutitle("Character Stats");
 		std::cout << this->character->toStringStats() << "\n";
 		system("PAUSE");
 		break;
@@ -135,6 +136,9 @@ void CharacterMenuState::updateMenu()
 		break;
 	case 3:
 		system("CLS");
+		std::cout << "\n" << "\n" << std::string(9, ' ')
+				  << " ----[[ Your Inventory ]] ---- "   << "\n" << "\n"
+				  << gui::msg_menudivider(40, '-');
 		std::cout << this->character->getInventory().toString() << "\n";
 		system("PAUSE");
 		break;
@@ -223,9 +227,8 @@ TravelMenuState::TravelMenuState(
 	: character(character), State(), Item(0)
 {
 	this->states = states;
-	this->locationString = "NONE";
+	this->locationString = "None";
 	this->nrOfLocations = 5;
-	
 }
 
 TravelMenuState::~TravelMenuState()
@@ -306,11 +309,9 @@ void TravelMenuState::updateEncounterMenu()
 		{
 		case EMPTY:
 		{
-
 			srand(time(NULL)); // fix, kad priesai tikrai randominiai butu 
 			int randomnr = rand() % 2;
 			this->locationString = "You are in an empty plane.";
-
 
 			if (randomnr==1)
 			{
@@ -329,7 +330,9 @@ void TravelMenuState::updateEncounterMenu()
 			this->locationString = "You are in a city.";
 			break;
 		case SHOP:
-			this->locationString = "You find a shop.";
+			this->locationString = "You found a shop.";
+			this->states->push(new ShopMenuState(this->character, this->states));
+
 			break;
 		case CHEST:
 			this->locationString = "You are in old ruins!";
@@ -625,12 +628,9 @@ void ShopMenuState::printMenu()
 	system("CLS");
 	std::cout << gui::msg_menutitle("Shop Menu");
 
-	//std::cout
-	//	<< "Welcome " <<this->character->getName(); darasyti 
-
 	std::cout
 		<< "\n"
-		<< std::string(4, ' ') << "Your amount of gold:" << this->character->getGold()
+		<< std::string(13, ' ') << "Your amount of gold:" << this->character->getGold()
 		<< "\n";
 		
 	std::cout
@@ -653,9 +653,10 @@ void ShopMenuState::updateMenu()
 		system("CLS");
 
 		while (!Leave_Shop == true) {
-			std::cout << "You picked up a right place to buy new gear ! " << "\n";
+			std::cout << "\n";
+			std::cout << std::string(4, ' ') << "You picked up a right place to buy new gear ! " << "\n";
 			std::cout << "\n"
-					<< std::string(4, ' ') << "Your amount of gold:" << this->character->getGold()
+					<< std::string(12, ' ') << "Your amount of gold:" << this->character->getGold()
 					<< "\n"
 					<< gui::msg_menudivider(40, '-')
 					<< std::string(4, ' ') << "Our available equipment number: " << this->Shop_items.size()  << "\n" << "\n";
@@ -684,7 +685,7 @@ void ShopMenuState::updateMenu()
 			{
 				Leave_Shop = true;
 			}
-			else std::cout << "Invalid input" << "\n";
+			else std::cout << " Invalid input" << "\n";
 			system("PAUSE");
 			system ("cls");
 			
@@ -695,36 +696,31 @@ void ShopMenuState::updateMenu()
 		system("CLS");
 		
 		while (!Leave_Shop == true) {
-			std::cout << "Our shop accepts everything so show me your items ! " << "\n" << "\n"
-				<< std::string(4, ' ') << "Your amount of gold:" << this->character->getGold()
+			std::cout << "\n" << " Our shop accepts everything so show me your items ! " << "\n" << "\n"
+				<< std::string(13, ' ') << "Your amount of gold:" << this->character->getGold()
 				<< "\n"
 				<< gui::msg_menudivider(40, '-')
 				<< std::string(4, ' ') << "Your available equipment to sell number: " << this->character->getInventory().size() << "\n" << "\n";
 
 
 			std::cout << this->character->getInventory().toString() << "\n";
-			std::cout << "\nChoose number of Item you want to sell, (-1 to leave shop) "<< "\n\n" << " Your choice: ";
+			std::cout << "\n Choose number of Item you want to sell, (-1 to leave shop) "<< "\n\n" << " Your choice: ";
 			std::cin >> this->Desired_item;
 
 			if (Desired_item < this->character->getInventory().size() && Desired_item >= 0)
 			{
-					std::cout << "You sold: " << this->character->getInventory().at(Desired_item).getName() << " for " << this->character->getInventory().at(Desired_item).getValue() << " gold";
-					this->character->addGold(this->character->getInventory().at(Desired_item).getValue());
-					this->character->getInventory().remove(Desired_item);
-					
-				
-				
+				std::cout << "You sold: " << this->character->getInventory().at(Desired_item).getName() << " for " << this->character->getInventory().at(Desired_item).getValue() << " gold";
+				this->character->addGold(this->character->getInventory().at(Desired_item).getValue());
+				this->character->getInventory().remove(Desired_item);
 			}
 			else if (Desired_item == -1)
 			{
 				Leave_Shop = true;
 			}
-			else std::cout << "Invalid input" << "\n";
+			else std::cout << " Invalid input" << "\n";
 			system("PAUSE");
 			system("cls");
-
 		}
-
 		break;
 	default:
 		system("CLS");
@@ -736,7 +732,6 @@ void ShopMenuState::updateMenu()
 
 void ShopMenuState::update()
 {
-	//dadeti
 	this->printMenu();
 	this->updateMenu();
 }
