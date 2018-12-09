@@ -228,7 +228,7 @@ TravelMenuState::TravelMenuState(
 {
 	this->states = states;
 	this->locationString = "None";
-	this->nrOfLocations = 5;
+	this->nrOfLocations = 6;
 }
 
 TravelMenuState::~TravelMenuState()
@@ -324,8 +324,21 @@ void TravelMenuState::updateEncounterMenu()
 			break;
 		}
 		case FARM:
+		{
+			srand(time(NULL)); // fix, kad priesai tikrai randominiai butu 
+			int randomnr = rand() % 3;
 			this->locationString = "You are on a farm.";
+
+			if (randomnr == 1)
+			{
+				system("cls");
+				std::cout << "ENEMY ENCOUTERED!" << "\n";
+				system("pause");
+
+				this->states->push(new CombatState(this->character, this->states));
+			}
 			break;
+		}
 		case CITY:
 			this->locationString = "You are in a city.";
 			break;
@@ -339,9 +352,15 @@ void TravelMenuState::updateEncounterMenu()
 			system("cls");
 			std::cout << " You found an old ruins! While exploring the ruins you located a locked chest\n\n";
 			this->riddle();
+
+			break;
+		case ALTAR:
+			this->locationString = "You found an Altar, Goddess of life blessed you!";
+			this->character->reset();
+
 			break;
 		default:
-			std::cout << "ERROR NO SUCH LOCATION!" << "\n";
+			std::cout << "ErRROR NO SUCH LOCATION!" << "\n";
 			system("pause");
 			break;
 		}
@@ -392,6 +411,9 @@ void TravelMenuState::updateMinimap()
 				case CHEST:
 					ss << " Ch ";
 					break;
+				case ALTAR:
+					ss << " Al ";
+					break;
 				}
 			}
 		}
@@ -404,7 +426,8 @@ void TravelMenuState::updateMinimap()
 
 void TravelMenuState::updateMenu()
 {
-	switch (this->getChoice())
+	this->choice = this->getChoice();
+	switch (choice)
 	{
 	case -1:
 		this->setQuit(true);
@@ -440,7 +463,10 @@ void TravelMenuState::update()
 	this->updateMinimap();
 	this->printMenu();
 	this->updateMenu();
-	this->updateEncounterMenu();
+	if (this->choice != 5) {
+		this->updateEncounterMenu();
+	}
+	
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -104,7 +104,19 @@ void CombatState::beginCombat()
 			//Turetu dar ir daiktu drop'a gaut bet dar to nera
 			this->character->addExp(gainedExp);
 			this->character->addGold(gainedGold);
-			std::cout << "YOU DEFEATED THE ENEMY AND GAINED " << gainedExp << " EXP and " << gainedGold << " gold " <<"\n";
+
+			srand(time(NULL));
+			int LootChance = rand() % 10; // 10% chance of loot 
+			int lootnr = rand() % 6; 
+			Item loot(0);
+			if (LootChance == 9) {
+				lootnr = loot.generate();
+				this->character->getInventory().add(lootnr);
+				std::cout << "YOU DEFEATED THE ENEMY AND GAINED " << gainedExp << " EXP and " << gainedGold << " gold " << "\n"
+						  << "Enemy dropped : " << this->character->getInventory().at(this->character->getInventory().size() - 1).getName() << "\n\n";
+				system("pause");
+			}
+			else std::cout << "YOU DEFEATED THE ENEMY AND GAINED " << gainedExp << " EXP and " << gainedGold << " gold " <<"\n";
 			
 			this->setQuit(true);
 			

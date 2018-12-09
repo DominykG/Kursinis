@@ -2,7 +2,7 @@
 #include"GameState.h"
 #include "CombatState.h"
 
-enum encounters { EMPTY = 0, FARM, CITY, SHOP, CHEST };
+enum encounters { EMPTY = 0, FARM, CITY, SHOP, CHEST, ALTAR };
 
 //Visi meniu state'ai :D
 class MainMenuState
@@ -75,6 +75,7 @@ private:
 	std::string minimapString;
 	int nrOfLocations;
 	int lootnr, RiddleAnswer, PlayerAnswer;
+	int choice;
 public:
 	TravelMenuState(
 		Character*& character,

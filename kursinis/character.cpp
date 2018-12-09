@@ -302,7 +302,7 @@ const std::string Character::toStringStats()
 	std::stringstream ss;
 
 	ss  << std::string(4, ' ') << " Character Name: " << this->name << "\n"
-		<< std::string(45, '-') << "\n"
+		<< std::string(4, ' ') << std::string(40, '-') << "\n"
 		<< std::string(4, ' ') << " Level: " << this->level << "\n"
 		<< std::string(4, ' ') << " Exp: " << this->exp << " / " << this->expNext << "\n"
 		<< "\n";
